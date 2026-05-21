@@ -6,6 +6,7 @@ use App\Enums\Interval;
 use Database\Factories\SubscriptionFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Subscription extends Model
 {
@@ -35,4 +36,11 @@ class Subscription extends Model
         'next_billing_date' => 'date',
         'is_trial' => 'bool'
     ];
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+
 }
