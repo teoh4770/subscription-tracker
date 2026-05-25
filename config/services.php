@@ -35,4 +35,7 @@ return [
         ],
     ],
 
+    'logodev' => [
+        'publishable_key' => env('LOGO_DEV_PUBLISHABLE_KEY')
+    ]
 ];
