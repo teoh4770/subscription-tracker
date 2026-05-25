@@ -2,44 +2,65 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SubscriptionRequest;
 use App\Http\Resources\SubscriptionResource;
 use App\Models\Subscription;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
 class SubscriptionController extends Controller
 {
-	public function index()
-	{
-		$subscriptions = Subscription::query()->get();
+    public function index()
+    {
+        $subscriptions = Subscription::query()->get();
 
-		return Inertia::render('Subscriptions/Index', [
-			// note: create a subscription resource
-			'subscriptions' => SubscriptionResource::collection($subscriptions)
-		]);
-	}
+        return Inertia::render('Subscriptions/Index', [
+            'subscriptions' => SubscriptionResource::collection($subscriptions)
+        ]);
+    }
 
-	public function create()
-	{
-	}
+    public function create()
+    {
+        return Inertia::render('Subscriptions/Create');
+    }
 
-	public function store(Request $request)
-	{
-	}
+    public function store(SubscriptionRequest $request)
+    {
+        Subscription::query()->create([
+            ...$request->validated(),
+            'user_id' => Auth::id(),
+            'active' => true,
+        ]);
 
-	public function show(Subscription $subscription)
-	{
-	}
+        return Redirect::route('subscriptions.index');
+    }
 
-	public function edit(Subscription $subscription)
-	{
-	}
+    public function show(Subscription $subscription)
+    {
+        return Inertia::render('Subscriptions/Show', [
+            'subscription' => SubscriptionResource::make($subscription)
+        ]);
+    }
 
-	public function update(Request $request, Subscription $subscription)
-	{
-	}
+    public function edit(Subscription $subscription)
+    {
+        return Inertia::render('Subscriptions/Edit', [
+            'subscription' => SubscriptionResource::make($subscription)
+        ]);
+    }
 
-	public function destroy(Subscription $subscription)
-	{
-	}
+    public function update(SubscriptionRequest $request, Subscription $subscription)
+    {
+        $subscription->update($request->validated());
+
+        return Redirect::route('subscriptions.show', ['subscription' => $subscription]);
+    }
+
+    public function destroy(Subscription $subscription)
+    {
+        $subscription->delete();
+
+        return Redirect::route('subscriptions.index');
+    }
 }

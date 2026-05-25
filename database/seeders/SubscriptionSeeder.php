@@ -6,7 +6,6 @@ use App\Models\Company;
 use App\Models\Subscription;
 use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Carbon;
 
 class SubscriptionSeeder extends Seeder
 {
@@ -19,7 +18,7 @@ class SubscriptionSeeder extends Seeder
             [
                 'price' => 4.99,
                 'billing_period' => 'weekly',
-                'start_date' => Carbon::parse('2025-10-06'),
+                'start_date' => today(),
                 'active' => true,
                 'is_trial' => false,
                 'company' => 'Crunchyroll',
@@ -27,7 +26,7 @@ class SubscriptionSeeder extends Seeder
             [
                 'price' => 2.99,
                 'billing_period' => 'weekly',
-                'start_date' => Carbon::parse('2026-01-05'),
+                'start_date' => today(),
                 'active' => true,
                 'is_trial' => false,
                 'company' => 'Paramount+',
@@ -36,7 +35,7 @@ class SubscriptionSeeder extends Seeder
             [
                 'price' => 10.99,
                 'billing_period' => 'monthly',
-                'start_date' => Carbon::parse('2025-10-18'),
+                'start_date' => today(),
                 'active' => true,
                 'is_trial' => false,
                 'company' => 'Spotify',
@@ -44,7 +43,7 @@ class SubscriptionSeeder extends Seeder
             [
                 'price' => 13.99,
                 'billing_period' => 'monthly',
-                'start_date' => Carbon::parse('2025-11-01'),
+                'start_date' => today(),
                 'active' => true,
                 'is_trial' => false,
                 'company' => 'Disney+',
@@ -52,7 +51,7 @@ class SubscriptionSeeder extends Seeder
             [
                 'price' => 9.99,
                 'billing_period' => 'monthly',
-                'start_date' => Carbon::parse('2025-12-03'),
+                'start_date' => today(),
                 'active' => true,
                 'is_trial' => false,
                 'company' => 'Apple TV+',
@@ -60,7 +59,7 @@ class SubscriptionSeeder extends Seeder
             [
                 'price' => 15.99,
                 'billing_period' => 'monthly',
-                'start_date' => Carbon::parse('2026-01-01'),
+                'start_date' => today(),
                 'active' => false,
                 'is_trial' => false,
                 'company' => 'Netflix',
@@ -68,7 +67,7 @@ class SubscriptionSeeder extends Seeder
             [
                 'price' => 30.00,
                 'billing_period' => 'monthly',
-                'start_date' => Carbon::parse('2026-02-12'),
+                'start_date' => today(),
                 'active' => true,
                 'is_trial' => false,
                 'company' => 'Claude Pro',
@@ -76,7 +75,7 @@ class SubscriptionSeeder extends Seeder
             [
                 'price' => 7.00,
                 'billing_period' => 'monthly',
-                'start_date' => Carbon::parse('2026-03-01'),
+                'start_date' => today(),
                 'active' => true,
                 'is_trial' => false,
                 'company' => 'YouTube Premium',
@@ -84,7 +83,7 @@ class SubscriptionSeeder extends Seeder
             [
                 'price' => 15.00,
                 'billing_period' => 'monthly',
-                'start_date' => Carbon::parse('2026-03-06'),
+                'start_date' => today(),
                 'active' => true,
                 'is_trial' => false,
                 'company' => 'Audible',
@@ -93,7 +92,7 @@ class SubscriptionSeeder extends Seeder
             [
                 'price' => 49.99,
                 'billing_period' => 'quarterly',
-                'start_date' => Carbon::parse('2025-10-01'),
+                'start_date' => today(),
                 'active' => true,
                 'is_trial' => false,
                 'company' => 'HBO Max',
@@ -101,7 +100,7 @@ class SubscriptionSeeder extends Seeder
             [
                 'price' => 29.99,
                 'billing_period' => 'quarterly',
-                'start_date' => Carbon::parse('2026-01-15'),
+                'start_date' => today(),
                 'active' => true,
                 'is_trial' => false,
                 'company' => 'Hulu',
@@ -110,7 +109,7 @@ class SubscriptionSeeder extends Seeder
             [
                 'price' => 180.00,
                 'billing_period' => 'yearly',
-                'start_date' => Carbon::parse('2026-01-22'),
+                'start_date' => today(),
                 'active' => true,
                 'is_trial' => false,
                 'company' => 'New York Times',
