@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import Layout from '@/Layouts/AuthenticatedLayout'
+  import Layout from '@/Layouts/AuthenticatedLayout.vue'
   import { Head } from '@inertiajs/vue3'
 
   defineProps<{}>()
