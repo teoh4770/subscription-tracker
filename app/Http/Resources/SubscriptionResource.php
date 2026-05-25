@@ -14,8 +14,8 @@ class SubscriptionResource extends JsonResource
     {
         $startDate = Carbon::parse($this->start_date);
         $nextBillingDate = Carbon::parse($this->next_billing_date);
-        $totalDays = $startDate->diffInDays($nextBillingDate);
-        $daysUntilNextBilling = today()->diffInDays($nextBillingDate);
+        $totalDays = round($startDate->diffInDays($nextBillingDate));
+        $daysUntilNextBilling = round(today()->diffInDays($nextBillingDate));
         $billingCycleProgress = $totalDays > 0 ? round(($totalDays - $daysUntilNextBilling) / $totalDays * 100) : 0;
 
         return [
