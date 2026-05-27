@@ -1,17 +1,28 @@
 <script setup lang="ts">
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import {Head, Link} from "@inertiajs/vue3";
+import {Head, Link, router} from "@inertiajs/vue3";
 import SubscriptionController from "@/actions/App/Http/Controllers/SubscriptionController";
 import {Subscription} from "@/types";
 import {ArrowLeft, CreditCard, Pen, Tag} from "lucide-vue-next";
 import SubscriptionDetailCard from "@/Components/Subscription/SubscriptionDetailCard.vue";
 import SubscriptionInfoCard from "@/Components/Subscription/SubscriptionInfoCard.vue";
+import DeleteSubscriptionButton from "@/Components/Subscription/DeleteSubscriptionButton.vue";
+import SubscribeButton from "@/Components/Subscription/SubscribeButton.vue";
 
 const props = defineProps<{
     subscription: {
         data: Subscription;
     };
 }>();
+
+
+function activate(subscription: Subscription) {
+    // todo: logic to activate subscription through controller
+}
+
+function deactivate(subscription: Subscription) {
+    // todo: logic to deactivate subscription through controller
+}
 </script>
 
 <template>
@@ -59,7 +70,8 @@ const props = defineProps<{
                     />
                 </div>
 
-                <article class="rounded-xl border border-gray-100 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800">
+                <article
+                    class="rounded-xl border border-gray-100 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800">
                     <div class="p-5">
                         <div class="flex justify-between text-sm font-medium">
                             <span class="text-gray-600 dark:text-gray-400">Days until renewal</span>
@@ -79,7 +91,8 @@ const props = defineProps<{
                     </div>
                 </article>
 
-                <article v-if="subscription.data.notes" class="rounded-xl border border-gray-100 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800">
+                <article v-if="subscription.data.notes"
+                         class="rounded-xl border border-gray-100 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800">
                     <div class="p-5">
                         <dt class="text-sm text-gray-500 dark:text-gray-400">
                             <span>Notes</span>
@@ -89,6 +102,24 @@ const props = defineProps<{
                 </article>
 
                 <!--   todo: action buttons like delete   -->
+                <div class="flex gap-3">
+                    <DeleteSubscriptionButton :subscription="subscription.data"
+                                              @delete="router.delete(SubscriptionController.destroy(subscription.data).url)"/>
+
+                    <SubscribeButton
+                        :is-subscription-active="subscription.data.active"
+                        @activate="activate(subscription.data)"
+                        @deactivate="deactivate(subscription.data)"
+                    />
+
+                    <Link
+                        :href="SubscriptionController.edit(subscription.data).url"
+                        class="flex flex-1 items-center justify-center gap-2 rounded-lg border border-gray-200 bg-white px-4 py-2 text-sm font-semibold text-gray-700 shadow-sm transition hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
+                    >
+                        <Pen class="size-[1.2em]"/>
+                        Edit
+                    </Link>
+                </div>
             </div>
         </div>
     </AuthenticatedLayout>
