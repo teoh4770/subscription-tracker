@@ -4,6 +4,13 @@ import { ref } from 'vue';
 import Modal from '@/Components/Modal.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import DangerButton from '@/Components/DangerButton.vue';
+import {Subscription} from "@/types";
+
+defineProps<{
+    subscription: {
+        data: Subscription;
+    };
+}>();
 
 defineEmits(['delete']);
 

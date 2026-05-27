@@ -22,6 +22,7 @@ class SubscriptionRequest extends FormRequest
             'notes' => ['nullable', 'string'],
             'image_url' => ['nullable', 'url'],
             'is_trial' => ['required', 'boolean'],
+            'active' => ['sometimes', 'boolean'],
 		];
 	}
 

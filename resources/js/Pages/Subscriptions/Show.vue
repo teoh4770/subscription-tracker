@@ -17,11 +17,21 @@ const props = defineProps<{
 
 
 function activate(subscription: Subscription) {
-    // todo: logic to activate subscription through controller
+    router.patch(SubscriptionController.update(subscription).url, {
+        ...subscription,
+        active: true
+    }, {
+        preserveScroll: true
+    })
 }
 
 function deactivate(subscription: Subscription) {
-    // todo: logic to deactivate subscription through controller
+    router.patch(SubscriptionController.update(subscription).url, {
+        ...subscription,
+        active: false,
+    }, {
+        preserveScroll: true
+    });
 }
 </script>
 
@@ -103,7 +113,7 @@ function deactivate(subscription: Subscription) {
 
                 <!--   todo: action buttons like delete   -->
                 <div class="flex gap-3">
-                    <DeleteSubscriptionButton :subscription="subscription.data"
+                    <DeleteSubscriptionButton :subscription="subscription"
                                               @delete="router.delete(SubscriptionController.destroy(subscription.data).url)"/>
 
                     <SubscribeButton
