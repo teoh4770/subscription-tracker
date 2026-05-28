@@ -3,7 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SubscriptionRequest;
+use App\Http\Resources\CategoryResource;
+use App\Http\Resources\CompanyResource;
+use App\Http\Resources\PaymentMethodResource;
 use App\Http\Resources\SubscriptionResource;
+use App\Models\Category;
+use App\Models\Company;
+use App\Models\PaymentMethod;
 use App\Models\Subscription;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -22,7 +28,15 @@ class SubscriptionController extends Controller
 
     public function create()
     {
-        return Inertia::render('Subscriptions/Create');
+        $companies = Company::query()->get();
+        $categories = Category::query()->get();
+        $paymentMethods = PaymentMethod::query()->get();
+
+        return Inertia::render('Subscriptions/Create', [
+            'companies' => CompanyResource::collection($companies),
+            'categories' => CategoryResource::collection($categories),
+            'paymentMethods' => PaymentMethodResource::collection($paymentMethods),
+        ]);
     }
 
     public function store(SubscriptionRequest $request)

@@ -32,3 +32,22 @@ export interface Subscription {
     company: Company | null;
     payment_method: PaymentMethod | null;
 }
+
+export interface PaymentMethod {
+    id: number;
+    name: string;
+    type: string;
+}
+
+export interface Company {
+    id: number;
+    name: string;
+    logo_url: string;
+    created_at: string;
+    updated_at: string;
+}
+
+export interface Category {
+    id: number;
+    name: string;
+}
