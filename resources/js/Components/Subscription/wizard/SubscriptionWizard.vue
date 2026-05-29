@@ -6,7 +6,7 @@ import WizardStepHeader from "@/Components/Subscription/wizard/WizardStepHeader.
 import CompanyList from "@/Components/Subscription/CompanyList.vue";
 import SubscriptionFormComp from "@/Components/Subscription/SubscriptionForm.vue";
 import {useForm} from "@inertiajs/vue3";
-import {computed, watch} from "vue";
+import {watch} from "vue";
 import SubscriptionController from "@/actions/App/Http/Controllers/SubscriptionController";
 
 export interface SubscriptionForm {
