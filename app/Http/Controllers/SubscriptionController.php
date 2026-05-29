@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\Interval;
 use App\Http\Requests\SubscriptionRequest;
 use App\Http\Resources\CategoryResource;
 use App\Http\Resources\CompanyResource;
@@ -36,6 +37,7 @@ class SubscriptionController extends Controller
             'companies' => CompanyResource::collection($companies),
             'categories' => CategoryResource::collection($categories),
             'paymentMethods' => PaymentMethodResource::collection($paymentMethods),
+            'intervals' => array_column(Interval::cases(), 'value')
         ]);
     }
 

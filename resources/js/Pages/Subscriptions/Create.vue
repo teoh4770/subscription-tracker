@@ -8,6 +8,7 @@ defineProps<{
     companies: { data: Company[] };
     categories: { data: Category[] };
     paymentMethods: { data: PaymentMethod[] };
+    intervals: string[];
 }>();
 </script>
 
@@ -22,6 +23,7 @@ defineProps<{
                 :companies="companies"
                 :categories="categories"
                 :paymentMethods="paymentMethods"
+                :intervals="intervals"
             />
         </div>
     </AuthenticatedLayout>
