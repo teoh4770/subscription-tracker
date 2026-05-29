@@ -61,8 +61,16 @@ class SubscriptionController extends Controller
 
     public function edit(Subscription $subscription)
     {
+        $companies = Company::query()->get();
+        $categories = Category::query()->get();
+        $paymentMethods = PaymentMethod::query()->get();
+
         return Inertia::render('Subscriptions/Edit', [
-            'subscription' => SubscriptionResource::make($subscription)
+            'subscription' => SubscriptionResource::make($subscription),
+            'companies' => CompanyResource::collection($companies),
+            'categories' => CategoryResource::collection($categories),
+            'paymentMethods' => PaymentMethodResource::collection($paymentMethods),
+            'intervals' => array_column(Interval::cases(), 'value')
         ]);
     }
 
