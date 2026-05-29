@@ -19,9 +19,9 @@ return new class extends Migration {
             $table->string('name');
             $table->decimal('price');
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(Company::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(PaymentMethod::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(Category::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Company::class)->nullable()->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(PaymentMethod::class)->nullable()->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Category::class)->nullable()->constrained()->cascadeOnDelete();
             $table->string('billing_period');
             $table->date('start_date');
             $table->date('next_billing_date')->nullable();

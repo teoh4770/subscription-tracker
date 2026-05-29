@@ -10,6 +10,7 @@ import InputError from "@/Components/InputError.vue";
 import Checkbox from "@/Components/Checkbox.vue";
 import {useForm} from "@inertiajs/vue3";
 import {computed, watch} from "vue";
+import SubscriptionController from "@/actions/App/Http/Controllers/SubscriptionController";
 
 export interface SubscriptionForm {
     name: string;
@@ -95,7 +96,7 @@ const updateName = (name: string) => {
 }
 
 const submitForm = () => {
-    console.log('submit form')
+    form.submit(SubscriptionController.store());
 }
 
 const capitalize = (str: string) => {
@@ -170,7 +171,7 @@ const capitalize = (str: string) => {
                 </div>
             </article>
 
-            <!--    form inputs        -->
+            <!--    Form inputs        -->
             <div v-if="form" class="rounded-xl border border-gray-100 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800">
                 <div class="space-y-6 p-6">
                     <div>
