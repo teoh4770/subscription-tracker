@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SubscriptionActivateController;
 use App\Http\Controllers\SubscriptionController;
+use App\Http\Controllers\SubscriptionDeactivateController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -25,6 +27,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::resource('subscriptions', SubscriptionController::class);
+    Route::patch('subscriptions/{subscription}/activate', SubscriptionActivateController::class);
+    Route::patch('subscriptions/{subscription}/deactivate', SubscriptionDeactivateController::class);
 });
 
 require __DIR__.'/auth.php';

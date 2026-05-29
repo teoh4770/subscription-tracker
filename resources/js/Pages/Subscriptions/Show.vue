@@ -8,6 +8,8 @@ import SubscriptionDetailCard from "@/Components/Subscription/SubscriptionDetail
 import SubscriptionInfoCard from "@/Components/Subscription/SubscriptionInfoCard.vue";
 import DeleteSubscriptionButton from "@/Components/Subscription/DeleteSubscriptionButton.vue";
 import SubscribeButton from "@/Components/Subscription/SubscribeButton.vue";
+import SubscriptionActivateController from "@/actions/App/Http/Controllers/SubscriptionActivateController";
+import SubscriptionDeactivateController from "@/actions/App/Http/Controllers/SubscriptionDeactivateController";
 
 const props = defineProps<{
     subscription: {
@@ -17,19 +19,13 @@ const props = defineProps<{
 
 
 function activate(subscription: Subscription) {
-    router.patch(SubscriptionController.update(subscription).url, {
-        ...subscription,
-        active: true
-    }, {
+    router.patch(SubscriptionActivateController(subscription).url, undefined, {
         preserveScroll: true
-    })
+    });
 }
 
 function deactivate(subscription: Subscription) {
-    router.patch(SubscriptionController.update(subscription).url, {
-        ...subscription,
-        active: false,
-    }, {
+    router.patch(SubscriptionDeactivateController(subscription).url, undefined, {
         preserveScroll: true
     });
 }
