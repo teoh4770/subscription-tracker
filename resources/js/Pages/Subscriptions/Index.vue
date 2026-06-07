@@ -13,7 +13,7 @@ const props = defineProps<{
     };
 }>()
 
-const { filter, filteredSubscriptions } = useSubscriptions(
+const {filter, filteredSubscriptions} = useSubscriptions(
     () => props.subscriptions.data,
 )
 </script>
@@ -23,7 +23,7 @@ const { filter, filteredSubscriptions } = useSubscriptions(
         <Head title="Index"/>
 
         <div
-            class="flex h-full flex-1 flex-col gap-4 overflow-x-auto rounded-xl p-4"
+            class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex h-full flex-1 flex-col gap-4 overflow-x-auto rounded-xl p-4"
         >
             <div class="grid gap-2">
                 <p class="text-lg font-bold text-gray-900">Subscriptions</p>

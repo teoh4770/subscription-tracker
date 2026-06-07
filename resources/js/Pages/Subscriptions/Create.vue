@@ -17,7 +17,7 @@ defineProps<{
         <Head title="Create"/>
 
         <div
-            class="flex h-full flex-1 flex-col gap-4 overflow-x-auto rounded-xl p-4"
+            class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex h-full flex-1 flex-col gap-4 overflow-x-auto rounded-xl p-4"
         >
             <SubscriptionWizard
                 :companies="companies"
