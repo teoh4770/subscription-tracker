@@ -15,11 +15,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-            'password' => Hash::make('password')
-        ]);
+        $testEmail = 'test@example.com';
+        if (User::query()->where('email', $testEmail)->doesntExist()) {
+            User::factory()->create([
+                'name' => 'Test User',
+                'email' => $testEmail,
+                'password' => Hash::make('password')
+            ]);
+        }
 
         $this->call([
             CategorySeeder::class,
